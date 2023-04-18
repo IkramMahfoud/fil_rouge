@@ -2,34 +2,68 @@
 
 class User
 {
-    public $db;
+    public $database;
     public function __construct()
     {
-        $this-> db = new Database; 
+        $this-> database = new Database;
     }
 
-
-    
-    // _________________login function____________________
-    public function login($email)
+    //login method
+    public function login($email,$password)
     {
-        $this-> db-> query("SELECT * FROM users WHERE email = :email");
-        $this-> db-> bind(":email",$email);
-        $this-> db-> execute();
-        return $row = $this-> db-> fetch();
+        $this-> database-> query("SELECT * FROM user WHERE email = :email");
+        $this-> database-> bind(":email",$email);
+        $row = $this-> database-> fetch();
+        $hash_pass=$row->pass;
+        $hash_pass2 = md5($password);
 
-
-        // if($password==$row->userPassword)
-        // {return $row;}else{return 'false';}
+        if ($hash_pass == $hash_pass2) {
+           return  $row;
+        } else {
+            return false;
+        }
     }
-    
-    public function signup($email,$password)
+
+
+   //register method
+    public function register($email,$password)
     {
-        $this-> db-> query("INSERT INTO users(userEmail,userPassword) 
-        VALUES (:email,:password)");
-        $this-> db-> bind(":email",$email);
-        $this-> db-> bind(":password",$password);
-        $this-> db-> execute();
+        $avatar = '1.png';
+        
+        $this-> database-> query("INSERT INTO user (email,pass,avatar) VALUES (:email,:password,:avatar)");
+        $this-> database-> bind(":email",$email);
+        $this-> database-> bind(":password",$password);
+        $this-> database-> bind(":avatar",$avatar);
+        if ($this->database-> execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
+    public function userToArtist($id)
+    {
+        $this-> database-> query("UPDATE `user` SET `role`= 2 WHERE `user_id` = :id");
+        $this-> database-> bind(":id",$id);
+        if ($this->database-> execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function upload_avatar($avatar,$id)
+    {
+        $this-> database-> query("UPDATE `user` SET `avatar` = :avatar WHERE `user_id` = :id");
+        $this-> database-> bind(":avatar",$avatar);
+        $this-> database-> bind(":id",$id);
+        if ($this->database-> execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

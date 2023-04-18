@@ -51,8 +51,7 @@ class App
             }
         }
 
-     
-
+        
         $this->param = $url ? array_values($url) : []; //ternary operator
         //call the function
         call_user_func_array([$this->Controller, $this->method], $this->param);

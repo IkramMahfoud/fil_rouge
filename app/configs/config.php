@@ -3,8 +3,8 @@
 //app link
 
 define('APPROOT', dirname(dirname(__FILE__)));
-define('URLROOT', 'http://localhost/fill-rouge/');
-define('APPNAME', 'fill-rouge');
+define('URLROOT', 'http://localhost/filRouge/');
+define('APPNAME', 'filRouge');
 
 // create database info
 define("DB_HOST", 'localhost');

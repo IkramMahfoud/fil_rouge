@@ -9,87 +9,87 @@ class userController extends Controller
         $this->userModel = $this->model('User');
     }
 
+    // login method
     public function login()
     {
-        if($_SERVER['REQUEST_METHOD']=='POST')
-        {
-            $_POST= filter_input_array(INPUT_POST);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST);
+            $data =
+                [
+                    'email'    => $_POST['Email'],
+                    'password' => $_POST['Password']
+                ];
 
-            // creation array's data:
-            $data=
-            [
-                'email'    => $_POST['Email'],
-                'password' => $_POST['Password']
-            ];
+            $user = $this->userModel->login($data['email'], $data['password']);
+            if ($user) {
 
-            $user = $this->userModel->login($data['email']);
-            if($user){
-                if($user->password == $data['password'])
-                {
-                    // Set The sessions
-                    $_SESSION['user_id'] = $user->id_users;
-                    $_SESSION['user_email'] = $user->email;
+                // Set The sessions
+                $_SESSION['user_id'] = $user->user_id;
+                $_SESSION['email'] = $user->email;
+                $_SESSION['role'] = $user->role;
 
-                    // Go to home:
-                    if($user->role == 0){
-                        header('location:'.URLROOT.'home');
-                    }elseif($user->role == 1){
-                        header('location:'.URLROOT.'cruisesController/cruisesDash');
-                    }
+                // Go to home:
+                if ($user->role == 0) {
+                    header('location:' . URLROOT . 'home');
+                } elseif ($user->role == 1) {
+                    header('location:' . URLROOT . 'gallery');
+                } elseif ($user->role == 2) {
+                    header('location:' . URLROOT . 'home');
                 }
-                }else
-                {
-                    // Return login:
-                    $this->view('login', []);
-                }
-        }else
-        {
-            $this->view('login',[]);
-        }
-    }
-
-
-    public function signup()
-    {
-        if($_SERVER['REQUEST_METHOD']=='POST')
-        {
-            $_POST= filter_input_array(INPUT_POST);
-
-            // creation array's data:
-            $data=
-            [
-                'email'    => $_POST['Email'],
-                'password' => $_POST['Password']
-            ];
-
-
-            if($this->userModel->signup($data['email'],$data['password'])){
-                header('location:'.URLROOT.'userController/login');
-            }else{
-                $this->view('signup',[]);
+            } else {
+                // Return login:
+                $this->view('login', []);
             }
-        }else{
-            $this->view('signup',[]);
+        } else {
+            $this->view('login', []);
         }
-
-
     }
 
 
+    //register method
+    public function register()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST);
+
+            $email = $_POST['Email'];
+            $password = $_POST['Password'];
+
+
+            $hash_pass = md5($password);
+
+
+            if ($this->userModel->register($email, $hash_pass)) {
+                $user = $this->userModel->login($email, $password);
+                // Set The sessions
+                $_SESSION['user_id'] = $user->user_id;
+                $_SESSION['email'] = $user->email;
+
+                // Go to home:
+                header('location:' . URLROOT . 'home');
+            } else {
+                $this->view('register', []);
+            }
+        } else {
+            $this->view('register', []);
+        }
+    }
+
+
+    // logout method
     public function logout()
     {
-
         unset($_SESSION['user_id']);
-        unset($_SESSION['user_email']);
-        // unset($_SESSION['idadmin']);
+        unset($_SESSION['email']);
         session_destroy();
         $this->view('homepage');
-
     }
+
 
     public function confirmLogout()
     {
         $this->view('logout');
     }
 
+    
 }
