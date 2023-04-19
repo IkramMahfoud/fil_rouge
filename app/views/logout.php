@@ -20,3 +20,6 @@ include_once APPROOT . '/views/includes/navbar.php';
 </div>
 </div>
 
+<?php
+include_once APPROOT . '/views/includes/footer.php';
+?>

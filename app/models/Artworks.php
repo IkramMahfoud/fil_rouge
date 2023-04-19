@@ -14,6 +14,43 @@ class Artworks{
     return $data = $this->database->fetchAll();
   }
 
+  public function get_artworks_db($id)
+  {
+
+    $this->database->query("SELECT * FROM `artworks` WHERE artwork_id = :id");
+    $this->database->bind(":id",$id);
+    $this->database->execute();
+    return $this->database->fetchAll();
+  }
+
+  public function get_artwork_db($id)
+  {
+    $this->database->query("SELECT * FROM portfolio p, artworks ar WHERE p.user_id = ar.artist_id AND artwork_id = :id");
+    $this->database->bind(":id",$id);
+    $this->database->execute();
+    return $this->database->fetch();
+  }
+
+
+
+  public function artworks()
+  {
+    $this->database->query("SELECT * FROM portfolio p, artworks ar WHERE p.user_id = ar.artist_id");
+    $this->database->execute();
+    return $this->database->fetchAll();
+  }
+
+
+  public function get_artworks_dbByIdUser($id)
+  {
+
+    $this->database->query("SELECT * FROM portfolio p, artworks ar WHERE p.user_id = ar.artist_id AND ar.artist_id = :id");
+    $this->database->bind(":id",$id);
+    $this->database->execute();
+    return $this->database->fetchAll();
+  }
+
+
   public function add_artwork_db($id,$title,$price,$category,$file)
   {
 
@@ -27,22 +64,6 @@ class Artworks{
   }
 
 
-  public function get_artworks_dbByIdUser($id)
-  {
-
-    $this->database->query("SELECT * FROM `artworks` WHERE artist_id = :id");
-    $this->database->bind(":id",$id);
-    $this->database->execute();
-    return $this->database->fetchAll();
-  }
-  public function get_artworks_db($id)
-  {
-
-    $this->database->query("SELECT * FROM `artworks` WHERE artwork_id = :id");
-    $this->database->bind(":id",$id);
-    $this->database->execute();
-    return $this->database->fetchAll();
-  }
 
 
 

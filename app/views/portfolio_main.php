@@ -28,22 +28,30 @@ include_once APPROOT . '/views/includes/navbar.php';
                     <a href="<?= URLROOT ?>artworkController/add_artwork" class="btn btn-link text-muted">add from here</a>
                 </div>
 
-                <div class="row">
+                <div class="row mb-5">
                     <?php foreach ($data['artworks'] as $artwork) : ?>
-                        <div style="width: 270px;display: flex;flex-direction: column;align-items: center;" class="col-lg-3 rounded-1 mb-2 pr-lg-1">
-                            <img src="<?= URLROOT ?>img/<?= $artwork->image ?>" alt="" class="img-fluid rounded shadow-sm p_i">
-                            <div>
+                        <div class="col-lg-3 mb-2 pr-lg-1 divImageArtWork mt-5 mx-4">
+                            <img src="  <?= URLROOT ?>img/<?= $artwork->image ?>" alt="" class="img-fluid  shadow-sm p_i">
+                            <!-- TITLE -->
+                            <!-- PRICE HERE -->
+                            <!-- CATEGORY -->
+                            <div class="widget-49-meeting-info mt-3">
+                                <span class="widget-49-pro-title mt-5">By- <?= $artwork->name ?></span><br>
+                                <span class="widget-49-pro-title ">Named- <?= $artwork->title ?></span><br>
+                                <span class="widget-49-pro-title "><?= $artwork->price.'DH' ?></span><br>
+                            </div>
+                            <div class="btnActionArtWork">
                                 <a href="<?= URLROOT ?>artworkController/edit_artwork_db/<?= $artwork->artwork_id ?>">
-                                    <button type="button" class="btn btn-success">edit</button>
+                                    <button type="button" class="btn btn-ligh editW"><i class="fa fa-edit"></i></button>
                                 </a>
                                 <a href="<?= URLROOT ?>artworkController/delete_artwork_db/<?= $artwork->artwork_id ?>">
-                                    <button type="button" class="btn btn-danger">delete</button>
+                                    <button type="button" class="btn btn-light closeW"><i class="fa fa-close"></i></button>
                                 </a>
                             </div>
                         </div>
                     <?php endforeach ?>
                 </div>
-                <div class="py-4">
+                <div class="py-4 mt-5">
                     <h5 class="mb-3">Recent posts</h5>
                     <div class="p-4 bg-light rounded shadow-sm">
                         <p class="font-italic mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
@@ -54,8 +62,15 @@ include_once APPROOT . '/views/includes/navbar.php';
                     </div>
                 </div>
             </div>
+
+
         </div>
         <!-- End profile widget -->
 
     </div>
 </div>
+
+
+<?php
+include_once APPROOT . '/views/includes/footer.php';
+?>

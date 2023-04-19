@@ -54,6 +54,13 @@ class  artworkController extends Controller
     $data = $artworks;
     $this->view('edit_artwork', $data);
   }
+  public function show_arts_db($id)
+  {
+    $artworks = $this->model('Artwork')->get_artworks_db($id);
+    $data = $artworks;
+    $this->view('edit_artwork', $data);
+  }
+
 
 
 
@@ -92,5 +99,25 @@ class  artworkController extends Controller
   {
     $this->model('Artworks')->delete_artwork_db($id);
     header('location:' . URLROOT . 'portfolioController/Became_an_artist');
+  }
+
+
+
+  public function artworks()
+  {
+    $artworks = $this->artwokModel->artworks();
+    $data=[
+      'artworks' => $artworks
+    ];
+    $this->view('Artworks',$data);
+  }
+
+  public function artwork($id)
+  {
+    $artwork = $this->artwokModel->get_artwork_db($id);
+    $data=[
+      'artwork' => $artwork
+    ];
+    $this->view('Artwork',$data);
   }
 }

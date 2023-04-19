@@ -89,3 +89,7 @@ include_once APPROOT . '/views/includes/navbar.php';
 </div>
 
 
+
+<?php
+include_once APPROOT . '/views/includes/footer.php';
+?>

@@ -44,3 +44,7 @@ include_once APPROOT . '/views/includes/navbar.php';
     </button>
   </form>
 </div>
+
+<?php
+include_once APPROOT . '/views/includes/footer.php';
+?>
