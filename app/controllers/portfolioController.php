@@ -28,6 +28,8 @@ class portfolioController extends Controller
   }
 
 
+
+   // edite portfolio:
   public function edit_profile()
   {
     if ($_SESSION['user_id'] == 'null' || empty($_SESSION['user_id'])) {
@@ -43,16 +45,39 @@ class portfolioController extends Controller
   }
 
 
+
+   //delete portfolio and set the user_id = 0:
+   public function deleteportfolio($id,$portfolio_id)
+    {
+      $_SESSION['role']=0;
+
+       $this->model('User')->artistToUser($id);
+       $this->model('Portfolio')-> delete_portfolio($portfolio_id);
+
+       header('location:' . URLROOT . 'home');
+   }
+
+
+
   public function Became_an_artist()
   {
     if ($_SESSION['user_id'] == 'null' || empty($_SESSION['user_id'])) {
       header('location:' . URLROOT . 'usercontroller/login');
     } else {
-      $id = $_SESSION['user_id'];
+
+      // this condition for check when user press on artosts portfolio
+      if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $id = $_POST['artist_id'];
+
+        }else{
+          $id = $_SESSION['user_id'];
+        }
+
       $info = $this->portfolioModel->get_artist_info($id);
 
       $artwokrs_array = $this->artwokModel->get_artworks_dbByIdUser($id);
-    // creation array's artwok data:
+
+    // artworks array:
     $data = [
       'info' => $info,
       'artworks'  =>  $artwokrs_array,
@@ -60,6 +85,8 @@ class portfolioController extends Controller
       $this->view('portfolio_main', $data);
     }
   }
+
+
 
 
   public function add_update_portfolio()
@@ -86,6 +113,7 @@ class portfolioController extends Controller
 
           // translate a normal user to an artist:
           $this->userModel->userToArtist($id);
+
           $action = $this->portfolioModel->add_portfolio($id, $name, $surname, $description);
 
           if ($action == 1) {
@@ -111,6 +139,7 @@ class portfolioController extends Controller
         }
       }
     }
+
   }
 
 

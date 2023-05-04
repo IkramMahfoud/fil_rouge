@@ -28,12 +28,19 @@ class userController extends Controller
                 $_SESSION['email'] = $user->email;
                 $_SESSION['role'] = $user->role;
 
-                // Go to home:
+                // check role:
+
+                // for user:
                 if ($user->role == 0) {
                     header('location:' . URLROOT . 'home');
-                } elseif ($user->role == 1) {
-                    header('location:' . URLROOT . 'gallery');
-                } elseif ($user->role == 2) {
+
+                }
+                // for admin:
+                elseif ($user->role == 1) {
+                    header('location:' . URLROOT . 'signalsController/getSignals');
+                }
+                // for artist:
+                elseif ($user->role == 2) {
                     header('location:' . URLROOT . 'home');
                 }
             } else {
@@ -91,5 +98,5 @@ class userController extends Controller
         $this->view('logout');
     }
 
-    
+
 }

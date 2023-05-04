@@ -35,6 +35,16 @@ class Portfolio
       return 0;
     }
   }
+  public function delete_portfolio($portfolio_id)
+  {
+    $this->database->query("DELETE FROM `portfolio` WHERE `portfolio_id` = :portfolio_id");
+    $this->database->bind(":portfolio_id", $portfolio_id);
+    if ($this->database->execute()) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 
   public function check_if_exist_portfolio($id)
   {
@@ -49,4 +59,5 @@ class Portfolio
     $this->database->bind(":id", $id);
     return $this->database->fetch();
   }
+
 }

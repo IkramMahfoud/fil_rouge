@@ -15,6 +15,7 @@ class User
         $this-> database-> bind(":email",$email);
         $row = $this-> database-> fetch();
         $hash_pass=$row->pass;
+        // password will be hashed here :
         $hash_pass2 = md5($password);
 
         if ($hash_pass == $hash_pass2) {
@@ -29,7 +30,7 @@ class User
     public function register($email,$password)
     {
         $avatar = '1.png';
-        
+
         $this-> database-> query("INSERT INTO user (email,pass,avatar) VALUES (:email,:password,:avatar)");
         $this-> database-> bind(":email",$email);
         $this-> database-> bind(":password",$password);
@@ -52,6 +53,17 @@ class User
         }
     }
 
+    public function artistToUser($id)
+    {
+        $this-> database -> query("UPDATE `user` SET `role`= 0 WHERE `user_id` = :id");
+        $this-> database-> bind(":id",$id);
+        if ($this->database-> execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     public function upload_avatar($avatar,$id)
     {
@@ -64,6 +76,9 @@ class User
             return false;
         }
     }
+
+
+
 
 
 }

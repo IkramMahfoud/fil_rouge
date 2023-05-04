@@ -13,22 +13,16 @@
                     <a class="nav-link " aria-current="page" href="<?= URLROOT ?>artworkController/artworks">Artworks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="<?= URLROOT ?>">Best Artist</a>
+                    <a class="nav-link " aria-current="page" href="<?= URLROOT ?>artistContorller/artists">Artists</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="<?= URLROOT ?>">Customer Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page"  href="<?= URLROOT ?> ">Our WebSite</a>
-
-                </li>
+              
 
             </ul>
             <form class="d-flex" role="search">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <?php if (!empty($_SESSION['user_id'])) : ?>
-                        
+
                         <li><a class="nav-link" href="<?= URLROOT ?>userController/confirmLogout">Log out</a></li>
                     <?php else : ?>
 

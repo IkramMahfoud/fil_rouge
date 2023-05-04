@@ -17,6 +17,7 @@ body {
 
 .margn{
 	margin-top: 19rem !important;
+	margin-bottom: 20rem !important;
 }
 
 .container {
@@ -27,18 +28,18 @@ body {
 }
 
 .form-control {
-    height: 25px;
-    width: 150px;
+    /* height: 25px;
+    width: 150px; */
     border: none;
     border-radius: 0;
     font-weight: 800;
-    padding: 0 0 5px 0;
+    /* padding: 0 0 5px 0; */
     background-color: transparent;
     box-shadow: none;
     outline: none;
     border-bottom: 2px solid #ccc;
-    margin: 0;
-    font-size: 14px;
+    /* margin: 0; */
+    /* font-size: 14px; */
 }
 
 .form-control:focus {
@@ -96,9 +97,9 @@ p {
 
 
 
-.text-muted {
+/* .text-muted {
     font-size: 10px;
-}
+} */
 
 .textmuted {
     color: #6c757d;
@@ -117,6 +118,11 @@ p {
     background-color: black;
     border: none;
     font-weight: 600;
+}
+
+.btn.btn-primary.shi {
+
+    background-color: #735d78;
 }
 
 .btn.btn-primary:hover .fas {
@@ -432,7 +438,7 @@ Using Bootstrap
 }
 
 .b1 {
-	background-image: url(http://localhost/filRouge/img/2.jpg);
+	background-image: url(http://localhost/filRouge/img/b1.svg);
 	background-size: cover;
 }
 
@@ -450,7 +456,7 @@ Using Bootstrap
 :root {
 	/* color type A */
 	--line_color: #555555;
-	--back_color: #FFECF6;
+	--back_color: #ffe2f2;
 
 	/* color type B */
 	/* --line_color : #1b1919 ;
@@ -782,9 +788,9 @@ Using Bootstrap
 	cursor: pointer
 }
 
-.labels {
+/* .labels {
 	font-size: 11px
-}
+} */
 
 .add-experience:hover {
 	background: #fa00a6;
@@ -849,7 +855,9 @@ img {
 .bttn {
 	color: #1e88e5;
 	border: none;
-	font-size: 15px;
+	font-size: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	position: relative;
 	background: transparent;
 	text-transform: uppercase;
@@ -865,6 +873,9 @@ img {
 span {
 	transition: all 0.7s;
 	z-index: -1;
+}
+#spn{
+	z-index: 100;
 }
 
 .bttn .first {

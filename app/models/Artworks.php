@@ -25,7 +25,7 @@ class Artworks{
 
   public function get_artwork_db($id)
   {
-    $this->database->query("SELECT * FROM portfolio p, artworks ar WHERE p.user_id = ar.artist_id AND artwork_id = :id");
+    $this->database->query("SELECT * FROM portfolio p, user u , artworks ar WHERE p.user_id = ar.artist_id AND artwork_id = :id ");
     $this->database->bind(":id",$id);
     $this->database->execute();
     return $this->database->fetch();
@@ -90,5 +90,14 @@ class Artworks{
           $this->database->bind(':id',$id);
           $this->database->execute();
   }
+
+
+
+//   public function delete($id)
+// {
+//   $this->database->query("DELETE FROM `artworks` WHERE artwork_id = :id ");
+//   $this->database->bind(':id', $id);
+//   $this->database->execute();
+// }
 
 }

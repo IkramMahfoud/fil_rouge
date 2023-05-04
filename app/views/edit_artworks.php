@@ -12,11 +12,11 @@ include_once APPROOT . '/views/includes/navbar.php';
       <label for="exampleInputName">Name of artwork</label>
       <input required type="text" name="title" class="form-control" value="<?=$data['artworks'][0]->title?>" placeholder="Enter name of the artwork" required="required">
     </div>
-    <div class="form-group">
+    <div class="form-group mb-2">
       <label for="exampleInputEmail1" required="required">Price of artwork</label>
       <input required type="number" name="price" class="form-control" value="<?=$data['artworks'][0]->price?>" placeholder="Enter price">
     </div>
-    <div class="form-group">
+    <div class="form-group ">
       <label for="exampleFormControlSelect1">Category</label>
       <select class="form-control" name="category" required="required">
         <option value="0" selected style="color:gray;">categories from here</option>
@@ -33,7 +33,7 @@ include_once APPROOT . '/views/includes/navbar.php';
       <input required type="file" accept="image/*" name="file">
     </div>
     <div>
-      <input required type="hidden" value="<?= $_SESSION['user_id'] ?>" name="user_id">
+      <input type="hidden" value="<?= $_SESSION['user_id'] ?>" name="user_id">
     </div>
     <hr>
     <button type="submit" class="bttn">Submit

@@ -1,7 +1,7 @@
 <?php
 
 //app link
-
+// define a constant : key,vlaue
 define('APPROOT', dirname(dirname(__FILE__)));
 define('URLROOT', 'http://localhost/filRouge/');
 define('APPNAME', 'filRouge');
@@ -11,3 +11,4 @@ define("DB_HOST", 'localhost');
 define("DB_USER", 'root');
 define("DB_PASSWORD", '');
 define("DB_NAME", 'fill-rouge');
+

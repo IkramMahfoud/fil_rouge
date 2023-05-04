@@ -1,0 +1,13 @@
+can reform url in a easy way that readable and give the access to some files and redirect them to other files
+
+this main .htaccess for redirection to public and delete public/ from url
+
+
+.htaccess in folder public : for redirecting  to index.php and in this url=
+"index.php?url="
+
+
+.htaccess in App block the access to this files
+
+
+middleware kat9ed routing 

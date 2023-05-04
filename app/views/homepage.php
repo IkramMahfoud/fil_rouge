@@ -1,6 +1,10 @@
 <?php
 include_once APPROOT . '/views/includes/header.php';
 include_once APPROOT . '/views/includes/navbar.php';
+
+
+
+
 ?>
 
 
@@ -8,6 +12,7 @@ include_once APPROOT . '/views/includes/navbar.php';
 	<div class="w-auto ">
 		<h1 class="display-4 text-center justify-center text_h">Shop Now</h1>
 	</div>
+
 	<?php if (!empty($_SESSION['user_id'])) : ?>
 		<div class="button mx-auto h-40">
 

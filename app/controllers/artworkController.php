@@ -120,4 +120,6 @@ class  artworkController extends Controller
     ];
     $this->view('Artwork',$data);
   }
+
+  
 }

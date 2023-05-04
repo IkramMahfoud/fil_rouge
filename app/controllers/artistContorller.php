@@ -3,10 +3,12 @@
 class ArtistContorller extends Controller
 {
     public $userModel;
+    public $artistModel;
 
     public function __construct()
     {
         $this->userModel = $this->model('User');
+        $this->artistModel = $this->model('Artists');
     }
 
     // login method
@@ -38,7 +40,7 @@ class ArtistContorller extends Controller
 
 
 
-    // logout method
+    // logout method:
     public function logout()
     {
         unset($_SESSION['user_id']);
@@ -53,5 +55,23 @@ class ArtistContorller extends Controller
         $this->view('logout');
     }
 
-    
+
+
+    // redirect method:
+    public function artists()
+    {
+        $this->artistModel->artists_db();
+        header('location:' . URLROOT . 'artistContorller/artists_db');
+    }
+
+    // get artists and show the view
+    public function artists_db()
+    {
+        $artists = $this->model('Artists')->artists_db();
+        $data = $artists;
+        $this->view('Artists', $data);
+    }
+
+
+   
 }
